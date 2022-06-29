@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion Android.compileSdk
+
+    defaultConfig {
+        minSdk  Android.minSdk
+        targetSdk Android.targetSdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.2.0-beta01'
+    }
+
+}
+
+dependencies {
+
+    implementation AndroidX.coreKtx
+    implementation AndroidX.lifecycleKtx
+    implementation AndroidX.appCompat
+
+    implementation Compose.ui
+    implementation Compose.material
+    implementation Compose.tooling
+    implementation Compose.activity
+
+    implementation Hilt.android
+    kapt Hilt.compiler
+}
